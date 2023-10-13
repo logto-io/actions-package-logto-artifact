@@ -1,0 +1,35 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-run-steps-action
+name: Package and upload Logto artifact
+inputs:
+  artifact-name:
+    description: The name of the artifact to upload
+    required: true
+    default: logto-${{ github.sha }}
+  branch:
+    description: The branch to checkout
+    required: true
+    default: ${{ github.head_ref }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.branch }}
+
+    - name: Setup Node and pnpm
+        uses: silverhand-io/actions-node-pnpm-run-steps@v3
+
+    - name: Build and package
+      run: |
+        pnpm -r build
+        ./.scripts/package.sh
+
+    - name: Upload Logto artifact
+      uses: actions/upload-artifact@v3
+      with:
+        artifact-name: ${{ inputs.artifact-name }}
+        path: /tmp/logto.tar.gz
+        retention-days: 3
+  
