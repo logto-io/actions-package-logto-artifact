@@ -30,6 +30,6 @@ runs:
     - name: Upload Logto artifact
       uses: actions/upload-artifact@v3
       with:
-        artifact-name: ${{ inputs.artifact-name }}
+        name: ${{ inputs.artifact-name }}
         path: /tmp/logto.tar.gz
         retention-days: 3
