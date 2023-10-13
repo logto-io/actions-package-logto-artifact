@@ -19,7 +19,7 @@ runs:
         ref: ${{ inputs.branch }}
 
     - name: Setup Node and pnpm
-        uses: silverhand-io/actions-node-pnpm-run-steps@v3
+      uses: silverhand-io/actions-node-pnpm-run-steps@v3
 
     - name: Build and package
       run: |
@@ -32,4 +32,3 @@ runs:
         artifact-name: ${{ inputs.artifact-name }}
         path: /tmp/logto.tar.gz
         retention-days: 3
-  
