@@ -7,8 +7,6 @@ inputs:
     default: logto-${{ github.sha }}
   branch:
     description: The branch to checkout
-    required: true
-    default: ""
 
 runs:
   using: composite
