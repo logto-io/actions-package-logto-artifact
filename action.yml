@@ -7,6 +7,10 @@ inputs:
     default: logto-${{ github.sha }}
   branch:
     description: The branch to checkout
+  node-version:
+    type: string
+  pnpm-version:
+    type: string
 
 runs:
   using: composite
@@ -18,6 +22,9 @@ runs:
 
     - name: Setup Node and pnpm
       uses: silverhand-io/actions-node-pnpm-run-steps@v4
+      with:
+        node-version: ${{ inputs['node-version'] }}
+        pnpm-version: ${{ inputs['pnpm-version'] }}
 
     - name: Build and package
       shell: bash
