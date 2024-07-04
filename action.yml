@@ -12,7 +12,7 @@ inputs:
     default: ^20.9
   pnpm-version:
     type: string
-    default: 8
+    default: 9
 
 runs:
   using: composite
@@ -23,7 +23,7 @@ runs:
         ref: ${{ inputs.branch }}
 
     - name: Setup Node and pnpm
-      uses: silverhand-io/actions-node-pnpm-run-steps@v4
+      uses: silverhand-io/actions-node-pnpm-run-steps@v5
       with:
         node-version: ${{ inputs['node-version'] }}
         pnpm-version: ${{ inputs['pnpm-version'] }}
